@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+ <div class="container-md col-md-8 text-center">
+ {# {% if book != null %} #}
+     <table class="table table-striped|sm|bordered|hover|inverse table-inverse table-responsive">
+      <thead class="thead-inverse|thead-default">
+          <tr>
+               <th>ID</th>
+               <th>Course Name</th>
+               <th>Course Slot</th>
+               <th>Course Image</th> 
+               <th>Course Start</th>
+               <th>Course End</th>
+               <th>Category Link Course</th>
+                        
+          </tr>
+          </thead>
+          <tbody>
+               <tr>
+                  <td>{{ courses.id }}</td>
+                  
+                  <td>{{ courses.name }} $</td>
+                  
+                  <td>{{ courses.slot }}</td>
+                  <td>
+                  
+                      <img src="{{ asset('covers/'~courses.photo) }}" width="100" height="120">  
+                  </td>
+                   <td>{{ courses.start | date('d/m/Y') }}</td>
+                   <td>{{ courses.end | date('d/m/Y') }}</td>
+                  
+                  <td>
+                    {% if (courses.category != null)  %}
+                       <a class="text-decoration-none" href="{{ path('category_detail', {'id' : courses.category.id }) }}">
+                          {{ courses.category.name }}
+                        </a> 
+                    {% endif %}
+                  </td>
+                    
+                  
+                  
+                 
+              </tr>          
+          </tbody>
+    </table>
+  
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div>
+		<div></div>
+		<div></div>
+		<table class='table'>
+			<thead>
+				<tr>
+					<th colspan="3">
+						<a href="{{ path('student_add')}}">
+							<i class="bi bi-plus-square"></i>
+						</a>
+					</th>
+					<th class="col-md-1">
+						<form action="{{ path('student_search')}}" method="POST">
+							<input type="search" name="searchValue" ,required placeholder="search by name">
+						</form>
+					</th>
+				</tr>
+				<tr>
+					<th><input type="checkbox" name="checkbox[]" id="select-all">Check all</th>
+					<th>Student Name</th>
+					<th>Student Avatar</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<form action="{{ path('student_delete', {'id': 'checkbox'})}}" method="post">
+
+					{% for s in student %}
+						<tr>
+							<td><input type="checkbox" name="checkbox[]" id="" value="{{ s.id}}"></td>
+							<td>
+								<a class="text-decoration-none" href="{{ path('student_detail', {'id': s.id})}}">{{ s.name}}</a>
+							</td>
+							<td>
+								<img src="{{ asset('images/'~s.avatar) }}" width="100" height="120">
+							</td>
+							<td>
+								<button>
+									<a class="text-decoration-none" href="{{ path('student_edit', {'id': s.id})}}">Edit</a>
+								</button>
+							</td>
+						</tr>
+					{% endfor %}
+					<td>
+						<button type="submit">Delete</button>
+					</td>
+				</form>
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

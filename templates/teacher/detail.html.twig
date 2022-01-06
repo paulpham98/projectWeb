@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="containter-md col-md-8 text-center">
+		<table class="table table-striped|sm|bordered|hover|inverse table-inverse table-responsive">
+			<thead class="thead-inverse|thead-default">
+				<tr>
+					<th>Teacher Name</th>
+					<th>Avatar</th>
+					<th>Birthday</th>
+					<th>Address</th>
+					<th>Mobile</th>
+					<th>Email</th>
+					<th>Nationality</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{teacher.name}}</td>
+					<td>
+						<img src="{{asset('covers/'~teacher.avatar)}}" width="100" height="120">
+					</td>
+					<td>{{teacher.birthday | date('d/m/y')}}</td>
+					<td>{{teacher.address}}</td>
+					<td>{{teacher.mobile}}</td>
+					<td>{{teacher.email}}</td>
+					<td>{{teacher.nationality}}</td>
+					<td>
+					{% if is_granted("ROLE_ADMIN") %}
+						<a class="btn btn-warning" href="{{path('teacher_edit', {'id': teacher.id})}}">
+							Edit
+						</a>
+						<a class="btn btn-danger" href="{{path('teacher_delete', {'id': teacher.id})}}">
+							Delete
+						</a>
+					</td>
+					{% endif %}  
+				</tr>
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

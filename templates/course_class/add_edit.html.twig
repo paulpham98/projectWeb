@@ -1,0 +1,66 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	{% if site == 'add' %}
+		<h2 class="text-center">ADD NEW CLASS</h2>
+	{% else %}
+		<h2 class="text-center">EDIT CLASS</h2>
+	{% endif %}
+	<div class="container col-md-6 mt-3 mb-3">
+		{{ form_start (form) }}
+		<div class="form-group">
+			{{ form_label (form.name) }}
+			{{ form_widget (form.name,
+            {
+               'attr' : {'class' : 'form-control'}
+            })
+         }}
+		</div>
+		<div class="form-group">
+			{{ form_label (form.maximum) }}
+			{{ form_widget (form.maximum,
+            {
+               'attr' : {'class' : 'form-control'}
+            })
+         }}
+		</div>
+		<div class="form-group">
+			{{ form_label (form.startdate) }}
+			{{ form_widget (form.startdate,
+            {
+               'attr' : {'class' : 'form-control'}
+            })
+         }}
+		</div>
+
+		<div class="form-group">
+			{{ form_label (form.enddate) }}
+			{{ form_widget (form.enddate,
+            {
+               'attr' : {'class' : 'form-control'}
+            })
+         }}
+		</div>
+
+		<div class="form-group">
+			{{ form_label (form.course) }}
+			{{ form_widget (form.course,
+            {
+               'attr' : {'class' : 'form-control'}
+            })
+         }}
+		</div>
+		{# <div class="form-group">
+					{{ form_label (form.student) }}
+					{{ form_widget (form.student,
+		            {
+		               'attr' : {'class' : 'form-control'}
+		            })
+		         }}
+				</div> #}
+		<div class="form-group text-center mt-3">
+			<input class="btn btn-primary" type="submit" value="Save">
+		</div>
+		{{ form_end (form) }}
+	</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div>
+		<table class='table '>
+			<thead>
+				<tr>
+					<th><input type="checkbox" name="checkbox[]" id="select-all">Check all</th>
+					<th>Student ID</th>
+					<th>Student Name</th>
+					<th class='col-md-3'>Student Course</th>
+				</tr>
+			</thead>
+			<tbody>
+				<form action="{{ path('class_student_assign', {'id': class.id})}}" method="post">
+					<input type="hidden" name="number_students" value="{{class.student|length}}">
+					{% for s in student %}
+
+						<tr>
+							<td><input type="checkbox" name="checkbox[]" id="" value="{{ s.id}}"></td>
+							<td>{{s.id}}</td>
+							<td>
+								<a class='text-decoration-none' href="{{ path('student_detail', {'id': s.id})}}">{{ s.name}}</a>
+							</td>
+							<td>
+								{% for c in s.courseClasses %}
+									<a class='text-decoration-none' href="{{ path('class_detail', {'id' : c.id})}}">{{c.name}}</a>
+									<br>
+								{% endfor %}
+							</td>
+						</tr>
+					{% endfor %}
+					<td colspan='4'>
+						<button type="submit">Assign To Class</button>
+					</td>
+				</form>
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

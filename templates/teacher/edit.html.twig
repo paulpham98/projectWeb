@@ -1,0 +1,69 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	<div class="container col-md-6 mt-3 mb-3">
+		<h2 class="text-center">Edit Teacher</h2>
+		<div class="col md-6"></div>
+		{{ form_start (form) }}
+		<div class="form-group">
+			{{ form_label (form.name) }}
+			{{ form_widget (form.name,
+            {
+               'attr' : {'class' : 'form-control'}
+            })
+         }}
+		</div>
+		<div class="form-group">
+			{{ form_label (form.birthday) }}
+			{{ form_widget (form.birthday,
+            {
+               'attr' : {'class' : 'form-control'}
+            })
+         }}
+		</div>
+		<div class="form-group">
+			{{ form_label (form.mobile) }}
+			{{ form_widget (form.mobile,
+            {
+               'attr' : {'class' : 'form-control'}
+            })
+         }}
+		</div>
+        <div class="form-group">
+			{{ form_label (form.email) }}
+			{{ form_widget (form.email,
+            {
+               'attr' : {'class' : 'form-control'}
+            })
+         }}
+		</div>
+		<div class="form-group">
+			{{ form_label (form.address) }}
+			{{ form_widget (form.address,
+            {
+               'attr' : {'class' : 'form-control'}
+            })
+         }}
+		</div>
+        <div class="form-group">
+			{{ form_label (form.nationality) }}
+			{{ form_widget (form.nationality,
+            {
+               'attr' : {'class' : 'form-control'}
+            })
+         }}
+		</div>
+		<div class="form-group">
+			{{ form_label (form.avatar) }}
+			{{ form_widget (form.avatar,
+            {
+               'attr' : {'class' : 'form-control'}
+            })
+         }}
+		</div>
+		<div class="form-group text-center mt-3">
+			<input class="btn btn-primary" type="submit" value="Edit">
+		</div>
+		{{ form_end (form) }}
+	</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	{% if site == 'edit' %}
+		<h2 class="text-center">EDIT COURSE</h2>
+	{% else %}
+		<h2 class="text-center">ADD COURSE</h2>
+	{% endif %}
+
+	<div class="container col-md-6 mt-3 mb-3">
+		{{ form_start (form) }}
+		<div class="form-group">
+			{{ form_label (form.name) }}
+			{{ form_widget (form.name,
+            {
+               'attr' : {'class' : 'form-control'}
+            })
+         }}
+		</div>
+		<div class="form-group">
+			{{ form_label (form.description) }}
+			{{ form_widget (form.description,
+            {
+               'attr' : {'class' : 'form-control'}
+            })
+         }}
+		</div>
+		{% if site == 'edit' %}
+			{% if course.image != null %}
+				<div><img src="{{ asset('images/'~course.image) }}" width="100" height="120"></div>
+			{% endif %}
+		{% endif %}
+
+		<div class="form-group">
+			{{ form_label (form.image) }}
+			{{ form_widget (form.image,
+            {
+               'attr' : {'class' : 'form-control'}
+            })
+         }}
+		</div>
+		<div class="form-group text-center mt-3">
+			<input class="btn btn-primary" type="submit" value="Save">
+		</div>
+		{{ form_end (form) }}
+	</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container col-md-6 mt-3 mb-3">
+   <h2 class="text-center">ADD NEW Course</h2>
+   <div class="col md-6"></div>
+   {{ form_start (form) }}
+      <div class="form-group">
+         {{ form_label (form.name) }}
+         {{ form_widget (form.name,
+            {
+               'attr' : {'class' : 'form-control'}
+            })
+         }}
+      </div>
+      <div class="form-group">
+         {{ form_label (form.slot) }}
+         {{ form_widget (form.slot,
+            {
+               'attr' : {'class' : 'form-control'}
+            })
+         }}
+      </div>
+      <div class="form-group">
+         {{ form_label (form.start) }}
+         {{ form_widget (form.start,
+            {
+               'attr' : {'class' : 'form-control'}
+            })
+         }}
+      </div>
+      <div class="form-group">
+         {{ form_label (form.category) }}
+         {{ form_widget (form.category,
+            {
+               'attr' : {'class' : 'form-control'}
+            })
+         }}
+      </div> 
+      <div class="form-group">
+         {{ form_label (form.end) }}
+         {{ form_widget (form.end,
+            {
+               'attr' : {'class' : 'form-control'}
+            })
+         }}
+      </div>
+      <div class="form-group">
+      {{ form_label (form.photo) }}
+      {{ form_widget (form.photo,
+         {
+            'attr' : {'class' : 'form-control'}
+         })
+      }}
+      </div>
+      <div class="form-group text-center mt-3">
+         <input class="btn btn-primary" type="submit" value="Add">
+      </div>
+   {{ form_end (form) }}
+</div>
+{% endblock %}

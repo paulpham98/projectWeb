@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Class ID</th>
+					<th>Class Name</th>
+					<th>Course</th>
+					<th>Maximum Student</th>
+					<th>Number Students</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Students</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{ class.id}}</td>
+					<td>
+						{{ class.name}}
+					</td>
+					<td>
+						<a class="text-decoration-none" href="{{ path('course_detail', {'id': class.course.id})}}">{{ class.course.name}}</a>
+					</td>
+					<td>{{class.maximum}}</td>
+					<td>{{class.student|length}}</td>
+					<td>{{class.startdate | date('d/m/Y')}}</td>
+					<td>{{class.enddate | date('d/m/Y')}}</td>
+					<td>
+						<a class="text-decoration-none" href="{{ path('class_view', {'id': class.id})}}">view</a>
+					</td>
+					<td>
+						<a class="text-decoration-none" href="{{ path('class_edit', {'id': class.id})}}">
+							<i class="bi bi-pencil-square"></i>
+							{# edit #}
+						</a>
+						<a class="text-decoration-none" href="{{ path('class_delete', {'id': class.id})}}">
+							<i class="bi bi-trash"></i>
+							{# delete #}
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="containter-md col-md-8 text-center">
+		{% if is_granted('ROLE_ADMIN') %}
+			<a class="btn btn-primary mt-4 mb-4" href="{{path('teacher_add')}}">
+				Add Teacher
+			</a>
+		{% endif %}
+		<div class="form-group col-md-4 mb-3">
+			<form action="{{path('search_teacher_name')}}" method="POST">
+				<input class="form-control" type="search" name="name" required placeholder="Search by teacher name">
+			</form>
+		</div>
+		<table class="table table-striped|sm|bordered|hover|inverse table-inverse table-responsive">
+			<thead class="thead-inverse|thead-default">
+				<tr>
+					<th>
+						Teacher ID
+						<a class="text-decoration-none" href="{{path('sort_teacher_id_asc')}}">
+							<img src="{{asset('images/up.png')}}" width="20" height="20" alt="">
+						</a>
+						<a class="text-decoration-none" href="{{path('sort_teacher_id_desc')}}">
+							<img src="{{asset('images/down.png')}}" width="20" height="20" alt="">
+						</a>
+					</th>
+					<th>Teacher Name</th>
+					<th>Teacher Avatar</th>
+					{% if is_granted("ROLE_ADMIN") %}
+						<th>Actions</th>
+					{% endif %}
+				</tr>
+			</thead>
+			<tbody>
+				{% for teacher in teachers %}
+					<tr>
+						<td scope="row">{{teacher.id}}</td>
+						<td>{{teacher.name}}</td>
+						<td>
+							<a href="{{path('teacher_detail', {'id': teacher.id})}}">
+								<img src="{{asset('covers/'~teacher.avatar)}}" width="100" height="120">
+							</a>
+						</td>
+						<td>
+						{% if is_granted("ROLE_ADMIN") %}
+							<a class="btn btn-warning" href="{{path('teacher_edit', {'id': teacher.id})}}">
+								Edit
+							</a>
+							<a class="btn btn-danger" href="{{path('teacher_delete', {'id': teacher.id})}}" onclick="return confirm('Do you want to delete this teacher?')">
+								Delete
+							</a>
+						</td>
+						{% endif %}
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

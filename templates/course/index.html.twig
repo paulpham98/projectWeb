@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	{% if is_granted('ROLE_ADMIN') %}
+		<div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th colspan="4">
+							<a class="text-decoration-none" href="{{ path('course_add')}}">
+								<i class="bi bi-plus-square"></i>
+							</a>
+						</th>
+						<th class="col-md-1">
+							<form action="{{ path('course_search')}}" method="POST">
+								<input type="search" name="searchValue" ,required placeholder="search by name">
+							</form>
+						</th>
+					</tr>
+					<tr>
+						<th scope="col"><input type="checkbox" name="" id="select-all">Check all</th>
+						<th scope="col">
+							{% if sort == 'desc' %}
+								<a class="text-decoration-none link-dark" href="{{path('sort_course_asc', {'val': 'id'})}}">
+									<i class="bi bi-sort-down"></i>Course ID</a>
+							{% elseif sort =='search' %}
+								Course ID
+							{% else %}
+								<a class="text-decoration-none link-dark" href="{{path('sort_course_desc', {'val': 'id'})}}">
+									<i class="bi bi-sort-up"></i>Course ID</a>
+							{% endif %}
+						</th>
+						<th scope="col">
+							{% if sort == 'desc' %}
+								<a class="text-decoration-none link-dark" href="{{path('sort_course_asc', {'val': 'name'})}}">
+									<i class="bi bi-sort-alpha-down"></i>Course Name</a>
+							{% elseif sort =='search' %}
+								Course Name
+							{% else %}
+								<a class="text-decoration-none link-dark" href="{{path('sort_course_desc', {'val': 'name'})}}">
+									<i class="bi bi-sort-alpha-up"></i>Course Name</a>
+							{% endif %}
+						</th>
+						<th scope="col">Course Imgage</th>
+
+						<th scope="col">Actions</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<form action="{{ path('course_delete', {'id': 'checkbox'})}}" method="post">
+
+						{% for c in course %}
+							<tr>
+								<th scope="row"><input type="checkbox" name="checkbox[]" id="" value="{{ c.id}}"></th>
+
+								<td>{{c.id}}</td>
+								<td>
+									<a class="text-decoration-none" href=" {{ path('course_detail', {'id': c.id} )}}">{{ c.name}}</a>
+								</td>
+								<td>
+									<img src="{{ asset('images/'~c.image) }}" width="100" height="120">
+								</td>
+								<td>
+									<button>
+										<a class="text-decoration-none" href="{{ path('course_edit', {'id': c.id})}}">Edit</a>
+									</button>
+								</td>
+							</tr>
+						{% endfor %}
+						<td colspan="5">
+							<button type="submit">Delete</button>
+						</td>
+					</form>
+				</tbody>
+			</table>
+		</div>
+	{% endif %}
+
+
+	{# <div class="col border border-dark">
+							<a class="text-decoration-none" href=" {{ path('course_detail', {'id': c.id} )}}">{{ c.name}}</a>
+							<br>
+							<img src="{{ asset('images/'~c.image) }}" width="100" height="120">
+						</div> #}
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="containter-md col-md-8 text-center">
+		<table class="table table-striped|sm|bordered|hover|inverse table-inverse table-responsive">
+			<thead class="thead-inverse|thead-default">
+				<tr>
+					<th>Room Name</th>
+					<th>Building</th>
+					<th>Teacher In Room</th>
+					<th>Image Room</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{room.name}}</td>
+					<td>{{room.building}}</td>
+					<td>
+						<a class="text-decoration-none" href="{{path('teacher_detail', {'id' :room.teacher.id})}}">
+							{{room.teacher.name}}
+						</a>
+					</td>
+					<td>
+						<img src="{{asset('covers/'~room.avatar)}}" width="100" height="120">
+					</td>
+					<td>
+						{% if is_granted("ROLE_ADMIN") %}
+							<a class="btn btn-warning" href="{{path('room_edit', {'id': room.id})}}">
+								Edit
+							</a>
+							<a class="btn btn-danger" href="{{path('room_delete', {'id': room.id})}}">
+								Delete
+							</a>
+						</td>
+					{% endif %}
+				</tr>
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
